@@ -6,6 +6,11 @@ const express = require('express')
 // server config
 const app = express();
 const PORT = 8000;
+const connectDB = require('./utils/DB/db')
+
+
+// database connection
+connectDB();
 
 //middlewares
 
