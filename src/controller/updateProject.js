@@ -23,12 +23,12 @@ const updateProject = async (req, res) => {
 
         const result = await projectModel.findByIdAndUpdate(id, {
             customerName: req?.body?.customerName?.toUpperCase(),
-            email:  req?.body?.email?.toUpperCase(),
-            contact:  req?.body?.contact?.toUpperCase(),
-            address:  req?.body?.address?.toUpperCase(),
-            packageType:  req?.body?.packageType?.toUpperCase(),
-            billingCycle:  req?.body?.billingCycle?.toUpperCase(),
-            startDate:  req?.body?.startDate?.toUpperCase(),
+            email: req?.body?.email?.toUpperCase(),
+            contact: req?.body?.contact?.toUpperCase(),
+            address: req?.body?.address?.toUpperCase(),
+            packageType: req?.body?.packageType?.toUpperCase(),
+            billingCycle: req?.body?.billingCycle?.toUpperCase(),
+            startDate: req?.body?.startDate?.toUpperCase(),
             endDate: req?.body?.endDate?.toUpperCase(),
             contract: req?.body?.contract?.toUpperCase(),
             logo: {
