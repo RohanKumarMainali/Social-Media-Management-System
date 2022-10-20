@@ -12,8 +12,12 @@ const adminModel = new mongoose.Schema({
     },
     password: {
         type: 'String',
-        
+
     }
 })
-
+adminModel.methods.matchPassword = async function (password) {
+    return await bcryptjs.compare(password, this.password);
+};
 module.exports = new mongoose.model('admins', adminModel)
+
+
