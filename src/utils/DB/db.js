@@ -8,6 +8,7 @@ const connectDB = async = () => {
         mongoose.connect(MONGO_URI).then(()=> {
             console.log('Database connected')
         })
+        // const myModel = mongoose.Model('SocialMediaManagementSystem')
     } catch (error) {
         console.log(error.message)
     }

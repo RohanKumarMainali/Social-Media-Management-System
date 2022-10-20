@@ -1,7 +1,10 @@
 // import packages
 
 require('dotenv').config();
-const express = require('express')
+const express = require('express');
+const routes = require('./routes/project')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
 // server config
 const app = express();
@@ -13,8 +16,11 @@ const connectDB = require('./utils/DB/db')
 connectDB();
 
 //middlewares
-
-app.get('/',(req,res)=>res.send('Hello world'));
+app.use(cors());
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/api',routes);
 
 // listen port
 
