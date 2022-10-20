@@ -17,7 +17,7 @@ const signUp = async (req, res) => {
             await _res.save()
             return res.status(StatusCodes.ACCEPTED).send({ message: 'User register sucessfully', success: true })
         })
-
+        
     } catch (error) {
         res.json(error)
     }
