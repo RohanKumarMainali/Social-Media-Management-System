@@ -5,6 +5,7 @@ const express = require('express');
 const routes = require('./routes/project')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const fileupload = require('express-fileupload'); 
 
 // server config
 const app = express();
@@ -19,6 +20,7 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(fileupload({useTempFiles: true}))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api',routes);
 

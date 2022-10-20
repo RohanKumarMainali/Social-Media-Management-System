@@ -21,7 +21,16 @@ const projectSchema = new mongoose.Schema({
     startDate: 'String',
     endDate: 'String',
     contract: 'String',
-    logo: 'String',
+    logo: {
+        public_id: {
+            type: String,
+            requried: true,
+        },
+        url: {
+            type: String,
+            required: true,
+        }
+    }
 })
 
 module.exports = new mongoose.model('project', projectSchema);
