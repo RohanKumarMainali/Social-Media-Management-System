@@ -1,7 +1,7 @@
 const adminModel = require('../../model/admin.model');
 const bcrypt = require("bcryptjs");
 const { StatusCodes } = require("http-status-codes");
-const auth = require("../../middlewares/auth")
+const auth = require("../../middleware/auth")
 
 var adminAttemptCount = 0, blockEmail;
 
@@ -21,15 +21,12 @@ const LOGIN = async (req, res) => {
   }
 
   //database mapping
-
   try{
     const data = await adminModel.find({ email: email})
 
     if (data !==undefined ) {
       //compare encrypt password
-      console.log("data "+data)
       const isMatched = await data[0].matchPassword(password);
-
       if(!isMatched){
         return res.status(StatusCodes.UNAUTHORIZED).send({
           success: false,
