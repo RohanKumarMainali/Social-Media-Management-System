@@ -3,6 +3,7 @@ const {
     StatusCodes
 } = require("http-status-codes");
 
+const cloudinary = require('../config/cloudinary')
 
 const updateProject = async (req, res) => {
 
@@ -10,6 +11,7 @@ const updateProject = async (req, res) => {
     const id = req.params.id;
 
     const file = req?.files?.logo
+    console.log(req.files.logo)
     try {
         const data = await cloudinary.uploader.upload(file.tempFilePath, {
             folder: 'logo',
@@ -21,16 +23,16 @@ const updateProject = async (req, res) => {
             }
         })
 
-        const result = new projectModel.findByIdAndUpdate(id, {
-            customerName: req?.body?.customerName.toUpperCase(),
-            email: req?.body?.email.toUpperCase(),
-            contact: req?.body?.contact.toUpperCase(),
-            address: req?.body?.address.toUpperCase(),
-            packageType: req?.body?.packageType.toUpperCase(),
-            billingCycle: req?.body?.billingCycle.toUpperCase(),
-            startDate: req?.body?.startDate.toUpperCase(),
-            endDate: req?.body?.endDate.toUpperCase(),
-            contract: req?.body?.contract.toUpperCase(),
+        const result = await projectModel.findByIdAndUpdate(id, {
+            customerName: req?.body?.customerName?.toUpperCase(),
+            email:  req?.body?.email?.toUpperCase(),
+            contact:  req?.body?.contact?.toUpperCase(),
+            address:  req?.body?.address?.toUpperCase(),
+            packageType:  req?.body?.packageType?.toUpperCase(),
+            billingCycle:  req?.body?.billingCycle?.toUpperCase(),
+            startDate:  req?.body?.startDate?.toUpperCase(),
+            endDate: req?.body?.endDate?.toUpperCase(),
+            contract: req?.body?.contract?.toUpperCase(),
             logo: {
                 public_id: data.public_id,
                 url: data.secure_url
@@ -43,6 +45,7 @@ const updateProject = async (req, res) => {
         })
 
     } catch (error) {
+        console.log(error)
         return res.send(error)
     }
 
