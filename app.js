@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 const express = require('express');
-const routes = require('./routes/project')
+const routes = require('./src/routes/project')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const fileupload = require('express-fileupload'); 
@@ -10,7 +10,7 @@ const fileupload = require('express-fileupload');
 // server config
 const app = express();
 const PORT = 8000;
-const connectDB = require('./utils/DB/db')
+const connectDB = require('./src/utils/DB/db')
 
 
 // database connection
