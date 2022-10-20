@@ -9,9 +9,7 @@ const updateProject = async (req, res) => {
 
 
     const id = req.params.id;
-
     const file = req?.files?.logo
-    console.log(req.files.logo)
     try {
         const data = await cloudinary.uploader.upload(file.tempFilePath, {
             folder: 'logo',
@@ -45,7 +43,6 @@ const updateProject = async (req, res) => {
         })
 
     } catch (error) {
-        console.log(error)
         return res.send(error)
     }
 
