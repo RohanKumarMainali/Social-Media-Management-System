@@ -15,10 +15,9 @@ const adminModel = new mongoose.Schema({
 
     }
 })
-
 adminModel.methods.matchPassword = async function (password) {
     return await bcryptjs.compare(password, this.password);
 };
+module.exports = new mongoose.model('admins', adminModel)
 
 
-module.exports = new mongoose.model("admins", adminModel);
