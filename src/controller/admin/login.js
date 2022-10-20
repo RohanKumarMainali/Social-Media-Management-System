@@ -20,8 +20,6 @@ const LOGIN = async (req, res) => {
     });
   }
 
-  
-
   //database mapping
 
   try{
@@ -30,7 +28,6 @@ const LOGIN = async (req, res) => {
     if (data !==undefined ) {
       //compare encrypt password
       console.log("data "+data)
-      
       const isMatched = await data[0].matchPassword(password);
 
       if(!isMatched){
@@ -39,7 +36,6 @@ const LOGIN = async (req, res) => {
           message: "Email or Password didn't matched"
         })
       }
-
 
       const { accessToken, refreshToken } = auth.GenerateJWT(email);
       return res.status(200).send({
@@ -70,8 +66,6 @@ const LOGIN = async (req, res) => {
       message: err.message
     })
   }
-  
-  
 }
 
 module.exports = LOGIN;
