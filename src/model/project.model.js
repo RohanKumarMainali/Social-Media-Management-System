@@ -20,7 +20,16 @@ const projectSchema = new mongoose.Schema({
     billingCycle: 'String',
     startDate: 'String',
     endDate: 'String',
-    contract: 'String',
+    contract: {
+        public_id: {
+            type: String,
+            requried: true,
+        },
+        url: {
+            type: String,
+            required: true,
+        }
+    },
     logo: {
         public_id: {
             type: String,

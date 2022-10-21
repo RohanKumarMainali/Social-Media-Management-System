@@ -17,11 +17,10 @@ const postProject = async (req, res) => {
         billingCycle,
         startDate,
         endDate,
-        contract,
-        logo,
     } = req.body;
 
     const file = req.files.logo
+    const contract = req.files.contract
 
 
     try {
@@ -30,6 +29,16 @@ const postProject = async (req, res) => {
 
         const data = await cloudinary.uploader.upload(file.tempFilePath, {
             folder: 'logo',
+        }, function (err, docs) {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log(docs)
+            }
+        })
+
+        const contractData = await cloudinary.uploader.upload(contract.tempFilePath, {
+            folder: 'contract',
         }, function (err, docs) {
             if (err) {
                 console.log(err)
@@ -47,7 +56,10 @@ const postProject = async (req, res) => {
             billingCycle: billingCycle.toUpperCase(),
             startDate: startDate.toUpperCase(),
             endDate: endDate.toUpperCase(),
-            contract: contract.toUpperCase(),
+            contract: {
+                public_id: contractData.public_id,
+                url: contractData.secure_url
+            },
             logo: {
                 public_id: data.public_id,
                 url: data.secure_url

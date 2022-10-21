@@ -2,6 +2,7 @@ const projectModel = require('../model/project.model');
 const {
     StatusCodes
 } = require("http-status-codes");
+const cloudinary = require('../config/cloudinary')
 
 
 const updateProject = async (req, res) => {
@@ -21,7 +22,7 @@ const updateProject = async (req, res) => {
             }
         })
 
-        const result = new projectModel.findByIdAndUpdate(id, {
+        const result =  projectModel.findByIdAndUpdate(id, {
             customerName: req?.body?.customerName.toUpperCase(),
             email: req?.body?.email.toUpperCase(),
             contact: req?.body?.contact.toUpperCase(),
@@ -43,7 +44,7 @@ const updateProject = async (req, res) => {
         })
 
     } catch (error) {
-        return res.send(error)
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error.message)
     }
 
 }
