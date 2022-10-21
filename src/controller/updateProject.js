@@ -10,6 +10,8 @@ const updateProject = async (req, res) => {
 
     const id = req.params.id;
     const file = req?.files?.logo
+    const contract = req?.files.contract
+
     try {
         const data = await cloudinary.uploader.upload(file.tempFilePath, {
             folder: 'logo',
@@ -21,7 +23,18 @@ const updateProject = async (req, res) => {
             }
         })
 
-        const result =  projectModel.findByIdAndUpdate(id, {
+
+        const contractData = await cloudinary.uploader.upload(contract.tempFilePath, {
+            folder: 'contract',
+        }, function (err, docs) {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log(docs)
+            }
+        })
+
+        const result =  await projectModel.findByIdAndUpdate(id, {
             customerName: req?.body?.customerName.toUpperCase(),
             email: req?.body?.email.toUpperCase(),
             contact: req?.body?.contact.toUpperCase(),
@@ -30,7 +43,10 @@ const updateProject = async (req, res) => {
             billingCycle: req?.body?.billingCycle.toUpperCase(),
             startDate: req?.body?.startDate.toUpperCase(),
             endDate: req?.body?.endDate.toUpperCase(),
-            contract: req?.body?.contract.toUpperCase(),
+            contract: {
+                public_id: contractData.public_id,
+                url: contractData.secure_url
+            },
       
             logo: {
                 public_id: data.public_id,
