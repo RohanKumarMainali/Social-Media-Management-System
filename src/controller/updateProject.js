@@ -2,14 +2,13 @@ const projectModel = require('../model/project.model');
 const {
     StatusCodes
 } = require("http-status-codes");
-const cloudinary = require('../config/cloudinary')
 
+const cloudinary = require('../config/cloudinary')
 
 const updateProject = async (req, res) => {
 
 
     const id = req.params.id;
-
     const file = req?.files?.logo
     try {
         const data = await cloudinary.uploader.upload(file.tempFilePath, {
@@ -32,6 +31,7 @@ const updateProject = async (req, res) => {
             startDate: req?.body?.startDate.toUpperCase(),
             endDate: req?.body?.endDate.toUpperCase(),
             contract: req?.body?.contract.toUpperCase(),
+      
             logo: {
                 public_id: data.public_id,
                 url: data.secure_url
