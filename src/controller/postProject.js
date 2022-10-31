@@ -22,6 +22,8 @@ const postProject = async (req, res) => {
     const file = req.files.logo
     const contract = req.files.contract
 
+    console.log(req.files)
+    console.log("real file" +file)
 
     try {
 
@@ -33,7 +35,7 @@ const postProject = async (req, res) => {
             if (err) {
                 console.log(err)
             } else {
-                console.log(docs)
+                console.log("success file")
             }
         })
 
@@ -43,19 +45,19 @@ const postProject = async (req, res) => {
             if (err) {
                 console.log(err)
             } else {
-                console.log(docs)
+                console.log("success contract")
             }
         })
 
         const result = new projectModel({
-            customerName: customerName.toUpperCase(),
-            email: email.toUpperCase(),
-            contact: contact.toUpperCase(),
-            address: address.toUpperCase(),
-            packageType: packageType.toUpperCase(),
-            billingCycle: billingCycle.toUpperCase(),
-            startDate: startDate.toUpperCase(),
-            endDate: endDate.toUpperCase(),
+            customerName: customerName?.toUpperCase(),
+            email: email?.toUpperCase(),
+            contact: contact?.toUpperCase(),
+            address: address?.toUpperCase(),
+            packageType: packageType?.toUpperCase(),
+            billingCycle: billingCycle?.toUpperCase(),
+            startDate: startDate?.toUpperCase(),
+            endDate: endDate?.toUpperCase(),
             contract: {
                 public_id: contractData.public_id,
                 url: contractData.secure_url
@@ -72,7 +74,7 @@ const postProject = async (req, res) => {
         })
 
     } catch (error) {
-        return res.send(error)
+        return res.status(StatusCodes.BAD_REQUEST).send(error.message)
     }
 
 }
