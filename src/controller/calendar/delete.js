@@ -6,7 +6,6 @@ const deleteCalender = async () => {
         const result = await calanderModel.findByIdAndDelete(id);
         return res.status(StatusCodes.OK).send({
             message: "Calander has been deleted sucessfully",
-            data: result,
             success: true
         })
     } catch (error) {
