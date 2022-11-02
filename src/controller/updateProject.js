@@ -36,6 +36,7 @@ const updateProject = async (req, res) => {
                 url: data.secure_url
             },
         })
+        console.log(result)
         return res.status(StatusCodes.OK).send({
             message: "Project has been updated sucessfully",
             data: result,

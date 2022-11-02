@@ -6,12 +6,16 @@ const deleteProject = require('../controller/deleteProject');
 const updateProject = require('../controller/updateProject');
 const signUp = require('../controller/admin/signUp');
 const login =  require('../controller/admin/login');
+const calanderPost = require('../controller/calendar/post')
+const getCalendar = require('../controller/calendar/get')
 
 router.post('/login',login);
 router.post('/signup',signUp);
 
 router.post('/postProject',postProject);
+router.post('/calanderPost',calanderPost);
 router.get('/getProject',getProject);
+router.get('/getCalendar',getCalendar);
 router.put('/updateProject/:id',updateProject);
 router.delete('/deleteProject/:id',deleteProject);
 
