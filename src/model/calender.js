@@ -1,25 +1,25 @@
 const mongoose = require('mongoose')
 
 const calanderModel = new mongoose.Schema({
+    id: {
+        type: "String"
+    },
     title: {
         type: 'String'
     },
-    startDate: {
+    start: {
         type: 'String'
     },
-    endDate: {
+    end: {
         type: 'String'
-    },
-    startTime:{
-        type:'String'
-    },
-    endTime:{
-        type:'String'
     },
     description: {
         type: "String"
     },
-    category: {}
+    type: {},
+    className: {
+        type: 'String'
+    }
 })
 module.exports = new mongoose.model('calender', calanderModel)
 

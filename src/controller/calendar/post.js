@@ -6,16 +6,16 @@ const {
 const postCalendar = async (req, res) => {
 
 
-    var { title, startDate, endDate, startTime, endTime, category, description } = req.body;
+    var { id, title, start, end, type, description } = req.body;
     try {
         var result = new calanderModel({
+            id,
             title,
-            startDate,
-            endDate,
-            startTime,
-            endTime,
-            category,
-            description
+            start,
+            end,
+            type,
+            description,
+            className: type?.value,
         })
         result.save();
         console.log(req.body)

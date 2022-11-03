@@ -1,6 +1,6 @@
 const calanderModel = require("../../model/calender");
 
-const deleteCalender = async () => {
+const deleteCalender = async (req,res) => {
     try {
         const id = req.params.id;
         const result = await calanderModel.findByIdAndDelete(id);
