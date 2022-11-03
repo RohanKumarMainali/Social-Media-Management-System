@@ -8,6 +8,7 @@ var adminAttemptCount = 0, blockEmail;
 const LOGIN = async (req, res) => {
   let { email, password } = req.body;
 
+  console.log(req.body)
   //uid validation
   if (typeof email !== "string" || typeof password !== "string") {
     return res.status(StatusCodes.UNAUTHORIZED).send("Client side validation issues. Please carefully send the right format of email and password !!")
