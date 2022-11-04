@@ -8,11 +8,9 @@ const updateInvoice = async (req,res) =>{
 
     try {
         const result = await invoiceModel.findByIdAndUpdate(id,{
-            date:req?.body?.date,
-            recipient: req?.body?.recipient,
-            package: req?.body?.package,
-            email: req?.body?.email,
-            status: req?.body?.status,
+            recipient: req?.recipient.toUpperCase(),
+            date: req?.date.toUpperCase(),
+            status: req?.status.toUpperCase(),
         })
         return res.status(StatusCodes.OK).send({
             success: true,
