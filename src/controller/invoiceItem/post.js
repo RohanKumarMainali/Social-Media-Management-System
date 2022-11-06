@@ -4,7 +4,7 @@ const {
 } = require("http-status-codes");
 
 
-const postProject = async (req, res) => {
+const invoiceItemPost = async (req, res) => {
 
     const {
         invoice, title, rate, quantity
@@ -24,4 +24,4 @@ const postProject = async (req, res) => {
 
 }
 
-module.exports = postProject;
+module.exports = invoiceItemPost;

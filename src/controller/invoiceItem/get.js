@@ -1,10 +1,10 @@
 const { StatusCodes } = require('http-status-codes');
-const invoiceModel = require('../../model/invoice');
+const invoiceModel = require('../../model/invoiceItem');
 
-const getSingleInvoice = async (req,res) => {
+const getInvoiceItem = async (req, res) => {
 
     try {
-        const result = await invoiceModel.findById(req.params.id);
+        const result = await invoiceModel.findOne({ invoice: req.params.id });
         return res.status(StatusCodes.OK).send({
             success: true,
             data: result
@@ -18,4 +18,4 @@ const getSingleInvoice = async (req,res) => {
 
 }
 
-module.exports = getSingleInvoice;
+module.exports = getInvoiceItem;
