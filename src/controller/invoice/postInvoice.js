@@ -9,24 +9,16 @@ const postInvoice = async(req,res) =>{
         date,
         status
     } =  req.body;
-    try {
-        const result = await new invoiceModel({
+        const result =  new invoiceModel({
             recipient: recipient.toUpperCase(),
             date: date.toUpperCase(),
             status: status.toUpperCase(),
         });
-        console.log(result);
         await result.save();
         return res.status(StatusCodes.OK).send({
             success: true,
             data: result,
         });
-    } catch (error) {
-        return res.status(StatusCodes.SERVICE_UNAVAILABLE).send({
-            success: 'false',
-            error: error.message, 
-        })
-    }
 
 }
 

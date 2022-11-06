@@ -18,6 +18,23 @@ const projectSchema = new mongoose.Schema({
     address: 'String',
     packageType: 'String',
     billingCycle: 'String',
+    postRemaining: {
+        type: String,
+        default: '0',
+      },
+    
+    postDone:  {
+        type: String,
+        default: '0',
+      },
+    dollarRemaining: {
+        type: String,
+        default: '0',
+      },
+    dollarSpent:  {
+        type: String,
+        default: '0',
+      },
     startDate: 'String',
     endDate: 'String',
     contract: {

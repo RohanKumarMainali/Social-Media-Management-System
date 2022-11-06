@@ -8,7 +8,7 @@ const cloudinary = require('../config/cloudinary')
 
 const postProject = async (req, res) => {
 
-    const {
+    let {
         customerName,
         email,
         contact,
@@ -17,6 +17,10 @@ const postProject = async (req, res) => {
         billingCycle,
         startDate,
         endDate,
+        postRemaining,
+        postDone,
+        dollarRemaining,
+        dollarSpent,
     } = req.body;
 
     const file = req.files.logo
@@ -24,6 +28,10 @@ const postProject = async (req, res) => {
 
     console.log(req.files)
     console.log("real file" +file)
+    
+    if(packageType.toUpperCase() === 'BASIC') postRemaining = '7' , dollarRemaining = '20' ;
+    else if (packageType.toUpperCase() === 'STANDARD') postRemaining = '15' , dollarRemaining = '45';
+    else if(packageType.toUpperCase() === 'PREMIUM') postRemaining = '30' , dollarRemaining = '100';
 
     try {
 
@@ -58,6 +66,10 @@ const postProject = async (req, res) => {
             billingCycle: billingCycle?.toUpperCase(),
             startDate: startDate?.toUpperCase(),
             endDate: endDate?.toUpperCase(),
+            postRemaining: postRemaining?.toUpperCase(),
+            postDone: postDone?.toUpperCase(),
+            dollarRemaining: dollarRemaining?.toUpperCase(),
+            dollarSpent: dollarSpent?.toUpperCase(),
             contract: {
                 public_id: contractData.public_id,
                 url: contractData.secure_url

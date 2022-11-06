@@ -43,6 +43,11 @@ const updateProject = async (req, res) => {
             billingCycle: req?.body?.billingCycle.toUpperCase(),
             startDate: req?.body?.startDate.toUpperCase(),
             endDate: req?.body?.endDate.toUpperCase(),
+            postRemaining: req?.body?.postRemaining.toUpperCase(),
+            postDone: req?.body?.postDone.toUpperCase(),
+            dollarRemaining: req?.body?.dollarRemaining.toUpperCase(),
+            dollarSpent: req?.body?.dollarSpent.toUpperCase(),
+
             contract: {
                 public_id: contractData.public_id,
                 url: contractData.secure_url
