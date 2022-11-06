@@ -39,7 +39,6 @@ const LOGIN = async (req, res) => {
       return res.status(200).send({
         message: 'Login succesfully.',
         email: email,
-        scope: "teacher",
         accessToken: accessToken,
         refreshToken: refreshToken
       })
