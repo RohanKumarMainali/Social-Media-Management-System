@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const invoiceModel = new mongoose.Schema({
     recipient: "String",
-    status: 'String',
+    status: "String",
     date: "String",
 })
 
