@@ -23,7 +23,7 @@ const projectSchema = new mongoose.Schema({
         default: '0',
       },
     
-    PostDone:  {
+    postDone:  {
         type: String,
         default: '0',
       },
