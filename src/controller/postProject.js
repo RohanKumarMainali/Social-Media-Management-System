@@ -17,6 +17,10 @@ const postProject = async (req, res) => {
         billingCycle,
         startDate,
         endDate,
+        postRemaining,
+        postDone,
+        dollarRemaining,
+        dollarSpent,
     } = req.body;
 
     const file = req.files.logo
@@ -58,6 +62,10 @@ const postProject = async (req, res) => {
             billingCycle: billingCycle?.toUpperCase(),
             startDate: startDate?.toUpperCase(),
             endDate: endDate?.toUpperCase(),
+            postRemaining: postRemaining?.toUpperCase(),
+            postDone: postDone?.toUpperCase(),
+            dollarRemaining: dollarRemaining?.toUpperCase(),
+            dollarSpent: dollarSpent?.toUpperCase(),
             contract: {
                 public_id: contractData.public_id,
                 url: contractData.secure_url
