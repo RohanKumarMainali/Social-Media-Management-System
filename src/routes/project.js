@@ -17,6 +17,10 @@ const getInvoiceItem = require('../controller/invoiceItem/get');
 const getSingleInvoice = require('../controller/invoice/singleInvoice');
 const deleteInvoice = require('../controller/invoice/deleteInvoice');
 const postInvoiceIteam = require('../controller/invoiceItem/post')
+const packagePost = require("../controller/packages/post")
+const packageGet = require("../controller/packages/get")
+const packageGetSingle = require("../controller/packages/getSingle")
+const invoiceItemUpdate = require("../controller/invoiceItem/update")
 
 router.post('/login',login);
 router.post('/signup',signUp);
@@ -24,18 +28,22 @@ router.post('/signup',signUp);
 router.post('/postProject',postProject);
 router.post('/postInvoiceIteam',postInvoiceIteam);
 router.post('/calanderPost',calanderPost);
+router.post('/packagePost',packagePost);
 router.post('/postInvoice',postInvoice);
 router.get('/getProject',getProject);
 router.get('/getCalendar',getCalendar);
 router.get('/getInvoice',getInvoice);
+router.get('/packageGet',packageGet);
+router.post('/packageGetSingle',packageGetSingle);
 router.get('/getSingleInvoice/:id',getSingleInvoice);
 router.get('/getInvoiceItem/:id',getInvoiceItem);
 router.put('/updateProject/:id',updateProject);
 router.put('/updateCalender/:id',updateCalender);
+router.put('/updateCalender/:id',updateCalender);
 router.put('/updateInvoice/:id',updateInvoice)
 router.delete('/deleteProject/:id',deleteProject);
 router.delete('/deleteCalender/:id',deleteCalender);
-router.delete('/deleteInvoice/:id',deleteInvoice);
+router.put('/invoiceItemUpdate/:id',invoiceItemUpdate);
 
 
 module.exports = router;
