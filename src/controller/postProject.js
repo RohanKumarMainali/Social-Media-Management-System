@@ -22,6 +22,7 @@ const postProject = async (req, res) => {
         postDone,
         dollarRemaining,
         dollarSpent,
+        price
     } = req.body;
 
     const file = req.files.logo
@@ -30,9 +31,6 @@ const postProject = async (req, res) => {
     console.log(req.files)
     console.log("real file" + file)
 
-    if (packageType.toUpperCase() === 'BASIC') postRemaining = '7', dollarRemaining = '20';
-    else if (packageType.toUpperCase() === 'STANDARD') postRemaining = '15', dollarRemaining = '45';
-    else if (packageType.toUpperCase() === 'PREMIUM') postRemaining = '30', dollarRemaining = '100';
 
 
     try {
@@ -62,20 +60,33 @@ const postProject = async (req, res) => {
         })
 
         packageModel.findOne({ packagename: req.body.packageType }).then((getPackage) => {
-            console.log(getPackage)
+            if (packageType.toUpperCase() === 'BASIC') {
+                postRemaining = '7', dollarRemaining = '20', price = 7500;
+            }
+            else if (packageType.toUpperCase() === 'STANDARD') {
+                postRemaining = '15', dollarRemaining = '45', price = 14999
+            }
+            else if (packageType.toUpperCase() === 'PREMIUM') {
+                postRemaining = '30', dollarRemaining = '100', price = 25999
+            } else {
+                postRemaining = getPackage?.postRemaining,
+                    dollarRemaining = getPackage?.dollarRemaining,
+                    price = getPackage?.price
+            }
             new projectModel({
                 customerName: customerName?.toUpperCase(),
                 email: email?.toUpperCase(),
                 contact: contact?.toUpperCase(),
                 address: address?.toUpperCase(),
-                packageType: req.body.packageType ? req.body.packageType.toUpperCase() : packageType?.toUpperCase(),
+                packageType: packageType,
                 billingCycle: billingCycle?.toUpperCase(),
                 startDate: startDate?.toUpperCase(),
                 endDate: endDate?.toUpperCase(),
-                postRemaining: req.body.packageType ? getPackage?.postRemaining : postRemaining?.toUpperCase(),
-                postDone: req.body.packageType ? getPackage?.countType?.postcount : postDone?.toUpperCase(),
-                dollarRemaining: req.body.packageType ? getPackage?.dollorRemaining : dollarRemaining?.toUpperCase(),
-                dollarSpent: req.body.packageType ? getPackage?.dollorRemaining - getPackage?.dollor : dollor?.toUpperCase(),
+                postRemaining: postRemaining,
+                postDone: postDone,
+                dollarRemaining: dollarRemaining,
+                dollarSpent: dollarSpent,
+                price: price,
                 contract: {
                     public_id: contractData.public_id,
                     url: contractData.secure_url
@@ -88,6 +99,7 @@ const postProject = async (req, res) => {
                 res.status(StatusCodes.OK).send({
                     message: result
                 })
+                console.log(result)
             }).catch(e => {
                 console.log(e)
             })

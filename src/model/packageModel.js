@@ -5,41 +5,26 @@ const packageModel = new mongoose.Schema({
         type: 'String'
     },
     price: {
-        type: 'String'
+        type: Number,
+        default: 0
     },
-    dollor: {
-        type: 'String'
+    // countType: {
+    //     postcount: {
+    //         type: Number,
+    //         default: 0
+    //     },
+    //     videocount: {
+    //         type: Number,
+    //         default: 0
+    //     }
+    // },
+    postRemaining: {
+        type: Number,
+        default: 0
     },
-    countType: {
-        postcount: {
-            type: Number,
-            default: 0
-        },
-        videocount: {
-            type: Number,
-            default: 0
-        }
-    },
-    postRemaining:{
-        type:Number,
-        default:0
-    },
-    priceRemaining:{
-        type:Number,
-        default:0
-    },
-    dollorRemaining:{
-        type:Number,
-        default:0
-    },
-    value: {
-        type: 'String'
-    },
-    theme: {
-        type: 'String'
-    },
-    label: {
-        type: 'String'
+    dollarRemaining: {
+        type: Number,
+        default: 0
     }
 })
 module.exports = new mongoose.model('package', packageModel)
