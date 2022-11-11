@@ -14,7 +14,9 @@ const adminModel = new mongoose.Schema({
     password: {
         type: 'String',
 
-    }
+    },
+    loginActivity: []
+
 })
 adminModel.methods.matchPassword = async function (password) {
     return await bcryptjs.compare(password, this.password);

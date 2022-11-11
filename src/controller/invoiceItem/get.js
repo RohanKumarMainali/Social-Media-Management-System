@@ -4,7 +4,7 @@ const invoiceModel = require('../../model/invoiceItem');
 const getInvoiceItem = async (req, res) => {
 
     try {
-        const result = await invoiceModel.findOne({ invoice: req.params.id });
+        const result = await invoiceModel.findOne({ invoice: req.params.id }).populate("invoice");
         return res.status(StatusCodes.OK).send({
             success: true,
             data: result

@@ -2,10 +2,10 @@ const projectModel = require('../model/project.model');
 const {
     StatusCodes
 } = require("http-status-codes");
-
+const { mail } = require('../utils/mail')
 const cloudinary = require('../config/cloudinary')
-
 const packageModel = require("../model/packageModel")
+
 
 const postProject = async (req, res) => {
 
@@ -36,8 +36,6 @@ const postProject = async (req, res) => {
     try {
 
         // for logo image
-
-
 
         const data = await cloudinary.uploader.upload(file.tempFilePath, {
             folder: 'logo',
@@ -74,14 +72,14 @@ const postProject = async (req, res) => {
                     price = getPackage?.price
             }
             new projectModel({
-                customerName: customerName?.toUpperCase(),
-                email: email?.toUpperCase(),
-                contact: contact?.toUpperCase(),
-                address: address?.toUpperCase(),
+                customerName: customerName,
+                email: email,
+                contact: contact,
+                address: address,
                 packageType: packageType,
-                billingCycle: billingCycle?.toUpperCase(),
-                startDate: startDate?.toUpperCase(),
-                endDate: endDate?.toUpperCase(),
+                billingCycle: billingCycle,
+                startDate: startDate,
+                endDate: endDate,
                 postRemaining: postRemaining,
                 postDone: postDone,
                 dollarRemaining: dollarRemaining,
@@ -96,6 +94,12 @@ const postProject = async (req, res) => {
                     url: data.secure_url
                 },
             }).save().then((result) => {
+                mail().sendMail({
+                    from: process.env.HOST,
+                    to: email,
+                    subject: "Project Added",
+                    html: `<p style="text-align:center; font-size:16px;"> Your Project has been added.</p>`
+                })
                 res.status(StatusCodes.OK).send({
                     message: result
                 })

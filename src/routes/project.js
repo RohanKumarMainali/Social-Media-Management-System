@@ -23,6 +23,11 @@ const packageGet = require("../controller/packages/get")
 const packageGetSingle = require("../controller/packages/getSingle")
 const invoiceItemUpdate = require("../controller/invoiceItem/update")
 const packageUpdate = require("../controller/packages/update")
+const getNotification = require("../controller/notification/get")
+const getSingle = require("../controller/single")
+const getUser  = require('../controller/admin/getUser')
+
+
 
 router.post('/login',login);
 router.post('/signup',signUp);
@@ -33,9 +38,12 @@ router.post('/calanderPost',calanderPost);
 router.post('/packagePost',packagePost);
 router.post('/postInvoice',postInvoice);
 router.get('/getProject',getProject);
+router.get('/getNotification',getNotification);
 router.get('/getCalendar',getCalendar);
 router.get('/getInvoice',getInvoice);
+router.get('/getSingle',getSingle);
 router.get('/packageGet',packageGet);
+router.get('/getUser/:email',getUser);
 router.post('/packageGetSingle',packageGetSingle);
 router.get('/getSingleInvoice/:id',getSingleInvoice);
 router.get('/getInvoiceItem/:id',getInvoiceItem);

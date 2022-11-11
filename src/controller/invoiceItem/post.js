@@ -14,6 +14,7 @@ const invoiceItemPost = async (req, res) => {
             invoice, title, rate, quantity
         })
         await result.save();
+        console.log(result)
         return res.status(StatusCodes.OK).send({
             message: result
         })
